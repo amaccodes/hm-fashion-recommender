@@ -1,0 +1,38 @@
+
+# ATTENTION: THIS IS SUBJECT TO CHNAGE!! THIS IS NOT FINAL.
+
+# Core
+pandas>=1.3.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
+matplotlib>=3.4.0
+seaborn>=0.11.0
+jupyter>=1.0.0
+tqdm>=4.60.0
+
+# Collaborative Filtering
+scikit-surprise>=1.1.1
+lightfm>=1.16
+
+# Deep Learning (Choose one block)
+
+# Option A: TensorFlow (with Keras)
+tensorflow>=2.8.0
+
+# Option B: PyTorch (uncomment if using instead of TensorFlow)
+# torch>=1.10.0
+# torchvision>=0.11.0
+
+# NLP / Diversity Tools (optional)
+# nltk>=3.6.0
+# textdistance>=4.2.0
+
+# Configuration (optional)
+# hydra-core>=1.2.0
+
+# Experiment tracking (optional)
+# wandb>=0.13.0
+# mlflow>=1.26.0
+
+# Testing
+pytest>=7.0.0

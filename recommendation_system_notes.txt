@@ -1,0 +1,85 @@
+Recommendation System Notes (Beginner-Friendly for Junior Data Scientists)
+==========================================================================
+
+Types of Recommendation Systems
+-------------------------------
+
+1. Content-Based Filtering
+   - Recommends items using features of the items themselves (e.g., ingredients, category, tags).
+   - Matches user preferences to similar item profiles.
+   - Data Needed: Recipe data, carbon scores, descriptive features.
+   - Use Case: Recommending similar recipes based on ingredients a user already liked.
+
+2. Collaborative Filtering
+   - Based on the preferences and behavior of similar users.
+   - "Users who liked X also liked Y."
+   - Data Needed: User-item interaction data (e.g., ratings, clicks, views).
+   - Example Dataset: https://www.kaggle.com/datasets/motahareshokri/cookbook-reviews
+
+3. Knowledge-Based Systems
+   - Uses domain-specific rules or logic (e.g., dietary restrictions, preferences).
+   - Recommends based on explicitly defined constraints or user input.
+   - Good for cold start problems (new users or new items).
+
+4. Hybrid Systems
+   - Combines content-based, collaborative, and/or knowledge-based methods.
+   - More robust and flexible in real-world use.
+   - Example: Netflix uses a hybrid approach for personalization.
+
+Learning Resources
+------------------
+- Medium Tutorial (Content-Based):
+  https://medium.com/@toprak.mhmt/content-based-recommender-system-bdfc60b1bee8
+- Udemy Course (unverified):
+  Search “Recommendation Systems” on Udemy
+- Technical Textbooks:
+  Ask your team or supervisor for trusted industry books.
+
+Example Systems in Practice
+---------------------------
+
+Yelp
+----
+- Overview of recommendation logic:
+  https://trust.yelp.com/recommendation-software/
+- Surprise Me Kaggle demo:
+  https://www.kaggle.com/code/fahd09/yelp-dataset-surpriseme-recommendation-system
+- Stanford CS229 project:
+  http://cs229.stanford.edu/proj2014/Jason%20Ting,%20Swaroop%20Indra%20Ramaswamy,%20Yelp%20Recommendation%20System.pdf
+
+Google
+------
+- Movie recommendation Colab notebook:
+  https://colab.research.google.com/github/google/eng-edu/blob/main/ml/recommendation-systems/recommendation-systems.ipynb
+
+Spotify
+-------
+- System overview presentation:
+  https://www.slideshare.net/MrChrisJohnson/algorithmic-music-recommendations-at-spotify
+- Collaborative filtering details:
+  https://www.slideshare.net/erikbern/collaborative-filtering-at-spotify-16182818#3
+
+Facebook
+--------
+- Facebook engineering blog (2015):
+  https://engineering.fb.com/2015/06/02/core-data/recommending-items-to-more-than-a-billion-people/
+
+What Makes a Good Recommendation System?
+----------------------------------------
+- Relevance: Accurately reflects user interests.
+- Novelty: Introduces fresh or less obvious items.
+- Serendipity: Unexpected yet delightful discoveries.
+- Diversity: Broad enough selection to maximize engagement.
+
+Cold Start Problem
+------------------
+Occurs when there is little or no user/item data.
+
+- New App Launch → No data at all.
+- New Item → No usage history.
+- New User → No prior activity to base predictions on.
+
+Solutions include:
+- Use of surveys to gather initial preferences.
+- Showing trending or popular content.
+- Hybrid models that use item metadata or business rules.

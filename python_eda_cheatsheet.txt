@@ -1,0 +1,48 @@
+Pandas Preprocessing & Data Checking Cheatsheet
+===============================================
+
+🔍 Data Overview & Shape
+------------------------
+df.shape                        # (rows, columns)
+df.columns                      # column names
+df.info()                       # non-null counts & data types
+df.describe()                   # summary stats for numerical columns
+
+❓ Missing Data Handling
+------------------------
+df.isnull().sum()               # count of NaNs per column
+df.isna().mean()                # % of missing values per column
+df[df['col'].isnull()]          # rows where 'col' is NaN
+df.dropna()                     # drop rows with any NaN values
+df.dropna(subset=['col'])      # drop rows where 'col' is NaN
+df.fillna(value)                # fill NaNs with a specific value
+
+📊 Value Counts & Uniqueness
+-----------------------------
+df['col'].value_counts()                # frequency of each unique value
+df['col'].nunique()                     # number of unique values
+df['col'].unique()                      # array of unique values
+df['col'].value_counts(normalize=True) # proportion of each value
+
+🧱 Data Types & Conversion
+--------------------------
+df.dtypes                               # data types of columns
+df['col'] = df['col'].astype('int')     # convert 'col' to integer
+df.select_dtypes(include='object')     # select categorical columns
+df.select_dtypes(include='number')     # select numeric columns
+
+🧹 Duplicates
+-------------
+df.duplicated().sum()                  # count of duplicate rows
+df[df.duplicated()]                    # view duplicated rows
+df.drop_duplicates(inplace=True)       # drop duplicates in place
+
+📐 Range & Outlier Inspection
+-----------------------------
+df['col'].min(), df['col'].max()       # min and max of column
+df['col'].plot(kind='box')             # boxplot for outliers
+
+📈 Correlation & Covariance
+---------------------------
+df.corr(numeric_only=True)             # correlation matrix (numerical columns)
+df.cov(numeric_only=True)              # covariance matrix
