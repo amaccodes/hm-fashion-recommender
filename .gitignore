@@ -1,5 +1,5 @@
 # Large data files that exceed GitHub limits
-data/raw/transactions_train .csv
+data/raw/transactions_train.csv
 data/raw/customers.csv
 
 # Python
