@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 
-from src.model import LSTMModel
-from src.utils import get_dataloaders
+from scripts.model import LSTMModel
+from scripts.utils import get_dataloaders
 
 #config
 EPOCHS = 10
