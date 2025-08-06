@@ -2,6 +2,8 @@
 
 import torch
 from torch.utils.data import TensorDataset, DataLoader
+from sklearn.preprocessing import LabelEncoder
+import numpy as np
 
 def get_dataloaders(batch_size=64):
     """
@@ -13,8 +15,13 @@ def get_dataloaders(batch_size=64):
     Y_train = data_payload['Y_train']
     X_test = data_payload['X_test']
     Y_test = data_payload['Y_test']
-    le = data_payload['label_encoder']
-    
+   
+    article_to_idx = data_payload['article_to_idx']
+    idx_to_article = data_payload['idx_to_article']
+
+    le = LabelEncoder()
+    le.classes_ = np.array([idx_to_article[i] for i in range(len(idx_to_article))])
+
     num_articles = len(le.classes_)
     print(f"Data loaded. Found {num_articles} unique articles.")
 
