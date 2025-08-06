@@ -1,15 +1,20 @@
-
-
 import torch
 from torch.utils.data import TensorDataset, DataLoader
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
+import os
 
 def get_dataloaders(batch_size=64):
     """
     Loads data and returns training/testing dataloaders
     """ 
-    data_payload = torch.load('data/processed/final_lstm_data.pth')
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    data_path = os.path.join(base_dir, 'data/processed/final_lstm_data.pth')
+    print(f"base_dir: {base_dir}")
+    print(f"data_path: {data_path}")
+    print(f"File exists? {os.path.exists(data_path)}")
+
+    data_payload = torch.load(data_path)
     
     X_train = data_payload['X_train']
     Y_train = data_payload['Y_train']
