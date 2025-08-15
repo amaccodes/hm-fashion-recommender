@@ -1,26 +1,35 @@
 import torch
-import torch.nn as nn
-
 from model import LSTMModel
 from utils import get_dataloaders
+import numpy as np
+import os
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-# Load split data from utils.py
-_, test_loader, num_articles, _ = get_dataloaders(batch_size=64)
+# Load test data + label encoder
+_, test_loader, num_articles, le = get_dataloaders(batch_size=1)
 
-# Load model weights (make sure this file exists, run train.py if not)
 model = LSTMModel(num_articles, embedding_dim=50, hidden_dim=100, output_seq_len=7).to(DEVICE)
-model.load_state_dict(torch.load('final_lstm_data.pth', map_location=DEVICE))
-
-# Display one prediction
+MODEL_PATH = os.path.join("data", "processed", "final_lstm_data.pth")
+model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
 model.eval()
+
 with torch.no_grad():
     for x_batch, y_batch in test_loader:
-        x_sample = x_batch[0].unsqueeze(0).to(DEVICE)  # Take the first sample
-        y_true = y_batch[0].cpu().numpy()
+        x_sample = x_batch.to(DEVICE)
+        y_true_indices = y_batch.cpu().numpy()[0]
         output = model(x_sample)
-        predicted = torch.argmax(output, dim=-1).cpu().numpy()
-        print("Sample prediction:", predicted)
-        print("True label:", y_true)
-        break  # Only show one prediction
+        predicted_indices = torch.argmax(output, dim=-1).cpu().numpy()[0]
+
+        # Clip predicted indices to valid range
+        max_index = len(le.classes_) - 1
+        predicted_indices = np.clip(predicted_indices, 0, max_index)
+        y_true_indices = np.clip(y_true_indices, 0, max_index)
+
+        # Decode to article IDs
+        y_true_articles = le.inverse_transform(y_true_indices)
+        predicted_articles = le.inverse_transform(predicted_indices)
+
+        print("Predicted article IDs:", predicted_articles)
+        print("True article IDs:", y_true_articles)
+        break
